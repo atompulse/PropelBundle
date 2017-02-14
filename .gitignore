@@ -3,3 +3,9 @@ Model/*/om
 vendor
 composer.lock
 composer.phar
+
+.idea/.name
+
+*.xml
+
+.idea/PropelBundle.iml
