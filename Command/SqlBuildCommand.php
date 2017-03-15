@@ -57,9 +57,9 @@ EOT
             $sqlDir = $buildProperties['propel.sql.dir'];
         } else {
             $sqlDir = $this->getApplication()->getKernel()->getCacheDir().DIRECTORY_SEPARATOR.'propel'.DIRECTORY_SEPARATOR.'sql';
+            $filesystem->remove($sqlDir);
         }
 
-        $filesystem->remove($sqlDir);
         $filesystem->mkdir($sqlDir);
 
         // Execute the task
