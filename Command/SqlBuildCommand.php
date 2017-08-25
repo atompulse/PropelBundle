@@ -47,11 +47,11 @@ class SqlBuildCommand extends WrappedCommand
      */
     protected function getSubCommandArguments(InputInterface $input)
     {
-        $defaultSqlDir = sprintf('%s/propel/sql', $this->getApplication()->getKernel()->getRootDir());
+        $propelConfig = $this->getContainer()->getParameter('propel.configuration');
 
         return array(
             '--connection'  => $this->getConnections($input->getOption('connection')),
-            '--output-dir'  => $input->getOption('sql-dir') ?: $defaultSqlDir,
+            '--output-dir'  => $input->getOption('sql-dir') ?: $propelConfig['paths']['sqlDir'],
             '--overwrite' => $input->getOption('overwrite')
         );
     }

@@ -54,12 +54,12 @@ class MigrationDiffCommand extends WrappedCommand
      */
     protected function getSubCommandArguments(InputInterface $input)
     {
-        $defaultOutputDir = $this->getApplication()->getKernel()->getRootDir().'/propel/migrations';
+        $propelConfig = $this->getContainer()->getParameter('propel.configuration');
 
         return array(
             '--connection'          => $this->getConnections($input->getOption('connection')),
             '--migration-table'     => $input->getOption('migration-table') ?: $this->getMigrationsTable(),
-            '--output-dir'          => $input->getOption('output-dir') ?: $defaultOutputDir,
+            '--output-dir'          => $input->getOption('output-dir') ?: $propelConfig['paths']['migrationDir'],
             '--table-renaming'      => $input->getOption('table-renaming'),
             '--editor'              => $input->getOption('editor'),
             '--skip-removed-table'  => $input->getOption('skip-removed-table'),

@@ -50,12 +50,12 @@ class MigrationStatusCommand extends WrappedCommand
      */
     protected function getSubCommandArguments(InputInterface $input)
     {
-        $defaultOutputDir = $this->getApplication()->getKernel()->getRootDir().'/propel/migrations';
+        $propelConfig = $this->getContainer()->getParameter('propel.configuration');
 
         return array(
             '--connection'      => $this->getConnections($input->getOption('connection')),
             '--migration-table' => $input->getOption('migration-table') ?: $this->getMigrationsTable(),
-            '--output-dir'      => $input->getOption('output-dir') ?: $defaultOutputDir,
+            '--output-dir'      => $input->getOption('output-dir') ?: $propelConfig['paths']['migrationDir'],
         );
     }
 }

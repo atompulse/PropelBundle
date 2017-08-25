@@ -50,10 +50,12 @@ class ModelBuildCommand extends WrappedCommand
      */
     protected function getSubCommandArguments(InputInterface $input)
     {
-        $outputDir = $this->getApplication()->getKernel()->getRootDir().'/../';
+        $propelConfig = $this->getContainer()->getParameter('propel.configuration');
 
-        return array(
-            '--output-dir' => $outputDir,
-        );
+        $options = [
+            '--output-dir' => $propelConfig['paths']['outputDir'],
+        ];
+
+        return $options;
     }
 }
