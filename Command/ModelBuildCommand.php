@@ -54,6 +54,7 @@ class ModelBuildCommand extends WrappedCommand
 
         $options = [
             '--output-dir' => $propelConfig['paths']['outputDir'],
+            '--schema-dir'  => $propelConfig['paths']['schemaDir'],
         ];
 
         return $options;

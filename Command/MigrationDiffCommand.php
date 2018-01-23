@@ -32,6 +32,7 @@ class MigrationDiffCommand extends WrappedCommand
             ->setDescription('Generate diff classes')
 
             ->addOption('connection',       null, InputOption::VALUE_IS_ARRAY | InputOption::VALUE_OPTIONAL, 'Connection to use. Example: default, bookstore')
+            ->addOption('schema-dir',         null, InputOption::VALUE_REQUIRED,  'The directory where the schema files are placed')
             ->addOption('output-dir',       null, InputOption::VALUE_OPTIONAL,    'The output directory')
             ->addOption('migration-table',  null, InputOption::VALUE_OPTIONAL,  'Migration table name (if none given, the configured table is used)', null)
             ->addOption('table-renaming',     null, InputOption::VALUE_NONE,      'Detect table renaming', null)
@@ -58,6 +59,7 @@ class MigrationDiffCommand extends WrappedCommand
 
         return array(
             '--connection'          => $this->getConnections($input->getOption('connection')),
+            '--schema-dir'          => $input->getOption('schema-dir') ?: $propelConfig['paths']['schemaDir'],
             '--migration-table'     => $input->getOption('migration-table') ?: $this->getMigrationsTable(),
             '--output-dir'          => $input->getOption('output-dir') ?: $propelConfig['paths']['migrationDir'],
             '--table-renaming'      => $input->getOption('table-renaming'),
